@@ -47,7 +47,11 @@ if (isset($_POST['body'])) {
 $select_sth = $dbh->prepare('SELECT * FROM bbs_entries ORDER BY created_at DESC');
 $select_sth->execute();
 ?>
+<head>
+  <title>画像投稿できる掲示板</title>
+</head>
 
+<!-- 投稿フォーム：送信先はこのファイル自身に設定し、ファイル送信のために enctype を指定します -->
 <form method="POST" action="./bbsimagetest.php" enctype="multipart/form-data">
   <textarea name="body" required></textarea>
   <div style="margin: 1em 0;">
@@ -58,6 +62,7 @@ $select_sth->execute();
 
 <hr>
 
+<!-- 取得した投稿データをループ処理で一覧表示します -->
 <?php foreach($select_sth as $entry): ?>
   <dl style="margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #ccc;">
     <dt>ID</dt>
@@ -66,8 +71,10 @@ $select_sth->execute();
     <dd><?= $entry['created_at'] ?></dd>
     <dt>内容</dt>
     <dd>
+      <!-- 本文を出力する際は必ず htmlspecialchars() でエスケープ処理を行います -->
       <?= nl2br(htmlspecialchars($entry['body'])) ?>
       
+      <!-- 画像のファイル名がデータベースに存在する場合は img 要素で画像を表示します -->
       <?php if(!empty($entry['image_filename'])): ?>
       <div>
         <img src="/image/<?= $entry['image_filename'] ?>" style="max-height: 10em;">
