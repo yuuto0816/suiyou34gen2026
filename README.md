@@ -21,7 +21,7 @@ sudo usermod -aG docker ec2-user
 
 ```bash
 mkdir -p ~/.docker/cli-plugins/
-curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v2.29.0/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
 chmod +x ~/.docker/cli-plugins/docker-compose
 
 ```
@@ -40,6 +40,7 @@ docker compose up -d
 ## 3. データベースのテーブル作成
 
 MySQLの中に、アクセスログ用と掲示板用のテーブルを作ります。
+※コンテナ起動直後はデータベースの準備に時間がかかるため、10〜20秒ほど待ってから以下のコマンドを実行してください。
 
 ```bash
 docker compose exec -T mysql mysql -u root example_db < create_access_logs.sql
