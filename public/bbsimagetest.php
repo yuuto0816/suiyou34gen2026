@@ -43,17 +43,6 @@ $select_sth->execute();
 ?>
 <head>
   <title>画像投稿できる掲示板</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-  img {
-      max-width: 100%;
-      height: auto;
-  }
-  input, textarea {
-      width: 100%;
-      box-sizing: border-box;
-  }
-  </style>
 </head>
 
 <!-- フォームのPOST先はこのファイル自身にする -->
