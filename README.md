@@ -37,18 +37,7 @@ docker compose up -d
 
 ```
 
-## 3. データベースのテーブル作成
-
-MySQLの中に、アクセスログ用と掲示板用のテーブルを作ります。
-※コンテナ起動直後はデータベースの準備に時間がかかるため、10〜20秒ほど待ってから以下のコマンドを実行してください。
-
-```bash
-docker compose exec -T mysql mysql -u root example_db < create_access_logs.sql
-docker compose exec -T mysql mysql -u root example_db < create_bbs_entries.sql
-
-```
-
-## 4. 動作確認
+## 3. 動作確認
 
 ブラウザを開いて、以下のURLにアクセスします。
 
